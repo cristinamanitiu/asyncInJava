@@ -19,6 +19,7 @@ services:
         - "AWS_ACCESS_KEY_ID=dummy"
         - "AWS_SECRET_ACCESS_KEY=dummy"
         - "sns.endpoint=http://localstack:4575"
+        - "micro1.endpoint=http://micro1:8082"
       ports:
         - "8082:8082"
   micro2:
@@ -28,5 +29,6 @@ services:
       - "AWS_ACCESS_KEY_ID=dummy"
       - "AWS_SECRET_ACCESS_KEY=dummy"
       - "sns.endpoint=http://localstack:4575"
+      - "micro2.endpoint=http://micro2:8084"
     ports:
       - "8084:8084"

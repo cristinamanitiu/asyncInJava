@@ -12,13 +12,13 @@ public class Futures {
     ExecutorService executor2 = Executors.newFixedThreadPool(1);
 
     Future futureTask = executor2.submit(getFactorial(10));
+    System.out.println(futureTask.get());
     for(int i=0; i<10; i++){
       System.out.println(Thread.currentThread().getName() + i);
     }
-    System.out.println(futureTask.get());
 
     //wait until is done
-    Future future = executor2.submit(getFactorial(20));
+    Future future = executor2.submit(getFactorial(10));
     while (!future.isDone()) {
       System.out.println("FutureTask is not finished yet...");
     }

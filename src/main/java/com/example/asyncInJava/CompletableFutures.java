@@ -9,7 +9,7 @@ public class CompletableFutures {
         .supplyAsync(() -> factorial(5));
 
     String name = Thread.currentThread().getName();
-    System.out.printf("out of completable future the thread is " + name + "\n");
+    System.out.printf("Out of completable future the thread is " + name + "\n");
 
     completableFuture
         .thenApplyAsync((result) -> {
@@ -41,7 +41,7 @@ public class CompletableFutures {
         fact= fact*i;
       }
     String name = Thread.currentThread().getName();
-    System.out.printf("in factorial the thread is " + name + "\n");
+    System.out.printf("In factorial the thread is " + name + "\n");
       return fact;
   }
 }

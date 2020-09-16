@@ -3,23 +3,22 @@ package com.example.asyncInJava;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import static java.lang.Thread.sleep;
-
-public class Threads {
+public class Threads extends Thread{
 
   public static void main(String[] args){
     //simple Runnable
     Runnable runnable = () -> {
       String threadName = Thread.currentThread().getName();
-      System.out.println("Hello Thread " + threadName);
+      System.out.println("Hello runnable " + threadName);
       Integer sum = 0;
       for (int i = 0; i < 100000; i++) {
         sum = sum + i;
       }
       System.out
-              .println("sum for thread " + threadName + " is " + sum);
+              .println("Sum for simple runnable thread " + threadName + " is " + sum);
     };
     runnable.run();
+
 
     Executor executor = Executors.newFixedThreadPool(3);
 
@@ -43,7 +42,7 @@ public class Threads {
         sum = sum + i;
       }
       System.out
-          .println("sum for thread " + threadName + " is " + sum);
+          .println("Sum for thread " + threadName + " is " + sum);
     };
     return new Thread(runnable);
   }

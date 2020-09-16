@@ -35,7 +35,9 @@ public class AsyncRunUnitTests {
     public void testWithResult() throws Exception {
         CompletableFuture<Integer> cf = new CompletableFuture<Integer>();
         cf.complete(120);
+
         when(asyncRun.asyncFactorial(anyInt())).thenReturn(cf);
+
         CompletableFuture<Integer> completableFuture = asyncCaller.callAsyncWithResult();
         assert(completableFuture.join()).equals(120);
         verify(asyncRun, Mockito.timeout(1000).times(1)).asyncFactorial(anyInt());
@@ -44,14 +46,14 @@ public class AsyncRunUnitTests {
     @Test
     public void testWithResultCountDownLatch() throws Exception {
         doAnswer((Answer<CompletableFuture>) invocation -> {
-            latch.countDown();
             CompletableFuture<Integer> cf = new CompletableFuture<Integer>();
             cf.complete(120);
+            latch.countDown();
             return cf;
         }).when(asyncRun).asyncFactorial(anyInt());
         CompletableFuture completableFuture = asyncCaller.callAsyncWithResult();
 
-        assert(latch.await(5L, TimeUnit.MILLISECONDS));
+        assert(latch.await(10L, TimeUnit.MILLISECONDS));
         assert(completableFuture.join()).equals(120);
     }
 }

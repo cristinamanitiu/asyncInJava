@@ -14,6 +14,9 @@ public class AsyncRunIntegrationTest {
     @Autowired
     AsyncCaller asyncCaller;
 
+    @Autowired
+    AsyncRun asyncRun;
+
     @Test
     public void test(){
         CompletableFuture completableFuture = asyncCaller.callAsyncWithResult();
