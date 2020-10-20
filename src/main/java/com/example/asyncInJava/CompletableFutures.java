@@ -5,13 +5,13 @@ import java.util.concurrent.ExecutionException;
 
 public class CompletableFutures {
   public static void main(String[] args) throws ExecutionException, InterruptedException {
-    CompletableFuture<Integer> completableFuture = CompletableFuture
+    CompletableFuture<Integer> completableFutureResponse = CompletableFuture
         .supplyAsync(() -> factorial(5));
 
     String name = Thread.currentThread().getName();
     System.out.printf("Out of completable future the thread is " + name + "\n");
 
-    completableFuture
+      completableFutureResponse
         .thenApplyAsync((result) -> {
           String threadName = Thread.currentThread().getName();
           System.out.println("async -> in thread " + threadName + " result before apply is " + result + "\n");
@@ -23,7 +23,7 @@ public class CompletableFutures {
         });
 
 
-      completableFuture
+      completableFutureResponse
               .thenApply((result) -> {
                   String threadName = Thread.currentThread().getName();
                   System.out.println("in thread " + threadName + " result before apply is " + result + "\n");
